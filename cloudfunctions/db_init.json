@@ -1,0 +1,52 @@
+{
+  "name": "db_init",
+  "version": "1.0.0",
+  "description": "云数据库初始化数据结构",
+  "collections": [
+    {
+      "name": "app_users",
+      "description": "用户表",
+      "indexes": [
+        { "name": "idx_openid", "fields": ["wechatOpenId", "unique"] },
+        { "name": "idx_id", "fields": ["_id"] }
+      ]
+    },
+    {
+      "name": "game_rooms",
+      "description": "房间表",
+      "indexes": [
+        { "name": "idx_roomcode", "fields": ["roomCode", "unique"] },
+        { "name": "idx_owner", "fields": ["ownerUserId"] },
+        { "name": "idx_status", "fields": ["status"] },
+        { "name": "idx_created", "fields": ["createdAt"] }
+      ]
+    },
+    {
+      "name": "score_records",
+      "description": "计分记录表",
+      "indexes": [
+        { "name": "idx_roomid", "fields": ["roomId"] },
+        { "name": "idx_operator", "fields": ["operatorUserId"] },
+        { "name": "idx_target", "fields": ["targetUserId"] },
+        { "name": "idx_created", "fields": ["createdAt"] }
+      ]
+    },
+    {
+      "name": "settlements",
+      "description": "结算记录表",
+      "indexes": [
+        { "name": "idx_roomid", "fields": ["roomId", "unique"] },
+        { "name": "idx_settler", "fields": ["settledByUserId"] }
+      ]
+    },
+    {
+      "name": "player_results",
+      "description": "玩家战绩表",
+      "indexes": [
+        { "name": "idx_userid", "fields": ["userId"] },
+        { "name": "idx_roomid", "fields": ["roomId"] },
+        { "name": "idx_gametype", "fields": ["gameType"] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<view class="container create-page">
+  <view class="card panel">
+    <view class="line">
+      <text class="label">游戏类型</text>
+      <text class="value">{{gameTypeLabel}}</text>
+    </view>
+
+    <view class="line">
+      <text class="label">房间人数</text>
+      <picker range="{{playerOptions}}" value="{{playerIndex}}" bindchange="onPlayerChange">
+        <view class="picker-box">{{gameType === 'MAHJONG' ? '4人(固定)' : playerOptions[playerIndex]}}</view>
+      </picker>
+    </view>
+
+    <button class="primary-btn submit" bindtap="createRoom">创建并进入</button>
+  </view>
+</view>

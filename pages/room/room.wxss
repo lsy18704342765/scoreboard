@@ -1,0 +1,380 @@
+page {
+  background-color: #f3f8f4; /* 基础浅绿色背景 */
+}
+
+.room-page {
+  padding: 24rpx 20rpx calc(40rpx + env(safe-area-inset-bottom));
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 统一优化卡片阴影与圆角 */
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(88, 184, 111, 0.10);
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+}
+
+.tool-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 10rpx !important;
+}
+
+.tool-btn {
+  width: 18%;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 0;
+  line-height: 1.3;
+  transition: transform 0.1s;
+}
+
+.tool-btn:active {
+  transform: scale(0.92);
+}
+
+.tool-icon {
+  font-size: 38rpx;
+  margin-bottom: 10rpx;
+}
+
+.tool-text {
+  font-size: 22rpx;
+  color: #5a6a5c;
+  white-space: nowrap;
+}
+
+.room-head {
+  text-align: center;
+}
+
+.room-title {
+  font-size: 36rpx;
+  color: #2f4738;
+  font-weight: 700;
+}
+
+.room-meta {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #7a8a7d;
+}
+
+.rule-title {
+  font-size: 26rpx;
+  color: #3f8d58; /* 深绿色 */
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.rule-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.rule-item {
+  width: calc(50% - 8rpx);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #3d4b42;
+}
+
+.rule-input {
+  width: 140rpx;
+  height: 60rpx;
+  border: 1rpx solid #c8e7cf;
+  border-radius: 12rpx;
+  text-align: center;
+  background: #f3f8f4;
+  color: #3f8d58;
+  font-weight: bold;
+}
+
+.save-rule-btn {
+  margin-top: 24rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  border-radius: 36rpx;
+  background: #e6f6ea;
+  color: #3f8d58;
+  border: none;
+  font-weight: 600;
+}
+.save-rule-btn::after { border: none; }
+
+.player-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx !important;
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%; /* 圆形头像更现代 */
+  background: #e5efe7;
+  border: 4rpx solid #f3f8f4;
+}
+
+.player-info {
+  margin-left: 24rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+}
+
+.player-name {
+  font-size: 32rpx;
+  color: #2f3d33;
+  font-weight: 700;
+  max-width: 280rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.owner-tag {
+  margin-left: 12rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background: #f59e0b; /* 琥珀色标签 */
+  border-radius: 20rpx;
+  padding: 4rpx 14rpx;
+  font-weight: normal;
+}
+
+.player-result {
+  display: inline-block;
+  margin-top: 8rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #7a8a7d;
+}
+
+.player-result.pos {
+  color: #ef4444; /* 赢钱更醒目的红色 */
+}
+
+.player-result.neg {
+  color: #10b981; /* 输钱用温和的绿色 */
+}
+
+.give-btn {
+  width: 140rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 36rpx;
+  background: linear-gradient(135deg, #68c47f, #58b86f); /* 绿色渐变 */
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 0;
+  box-shadow: 0 4rpx 12rpx rgba(88, 184, 111, 0.28);
+}
+.give-btn::after { border: none; }
+.give-btn:active { opacity: 0.8; }
+
+.nine-actions {
+  margin-top: 12rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.nine-btn {
+  font-size: 22rpx;
+  color: #3f8d58;
+  border: 1rpx solid #9ad6a8;
+  background: #f3f8f4;
+  border-radius: 20rpx;
+  padding: 6rpx 16rpx;
+}
+
+.settle-card {
+  padding: 16rpx !important;
+}
+
+.settle-btn {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 44rpx;
+  background: #2f4738; /* 深色沉稳按钮用于结算 */
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.record-card {
+  padding: 24rpx !important;
+}
+
+.record-title {
+  font-size: 28rpx;
+  color: #2f4738;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.record-row {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #e9f2eb;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center; /* 左右排布 */
+  justify-content: space-between;
+}
+.record-row:last-child {
+  border-bottom: none;
+}
+
+.record-main {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex: 1;
+}
+
+.record-user {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 180rpx;
+}
+
+.record-avatar {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #e5efe7;
+  flex-shrink: 0;
+}
+
+.record-name {
+  margin-left: 8rpx;
+  max-width: 130rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #3d4b42;
+  font-weight: 500;
+}
+
+.record-arrow {
+  color: #95a596;
+  font-size: 24rpx;
+}
+
+.record-score {
+  color: #58b86f; /* 绿色的加分强调 */
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: 16rpx;
+}
+
+.muted {
+  color: #95a596;
+  font-size: 22rpx;
+}
+
+.qrcode-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(4px); /* 磨砂玻璃遮罩 */
+}
+
+.qrcode-panel {
+  width: 620rpx;
+  padding: 40rpx 32rpx;
+  border-radius: 32rpx;
+}
+
+.qrcode-title {
+  display: block;
+  text-align: center;
+  color: #2f4738;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.qrcode-image {
+  width: 480rpx;
+  height: 480rpx;
+  margin: 32rpx auto 16rpx;
+  display: block;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.05);
+}
+
+.qrcode-tip {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #7a8a7d;
+  line-height: 1.6;
+}
+
+.qrcode-actions {
+  margin-top: 32rpx;
+  display: flex;
+  gap: 24rpx;
+}
+
+.qrcode-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.qrcode-btn.primary {
+  background: linear-gradient(135deg, #68c47f, #58b86f);
+  color: #fff;
+  box-shadow: 0 4rpx 12rpx rgba(88, 184, 111, 0.28);
+}
+
+.qrcode-btn.secondary {
+  background: #e9f2eb;
+  color: #5a6a5c;
+}

@@ -1,0 +1,118 @@
+<view class="container room-page" wx:if="{{room}}">
+  <view class="tool-bar card">
+    <button class="tool-btn" open-type="share">
+      <text class="tool-icon">👥</text>
+      <text class="tool-text">邀请</text>
+    </button>
+    <view class="tool-btn" bindtap="showJoinQr">
+      <text class="tool-icon">🧾</text>
+      <text class="tool-text">扫码入房</text>
+    </view>
+    <view class="tool-btn" bindtap="openDetail">
+      <text class="tool-icon">✏️</text>
+      <text class="tool-text">明细</text>
+    </view>
+    <view class="tool-btn" bindtap="exitRoom">
+      <text class="tool-icon">↩️</text>
+      <text class="tool-text">退出</text>
+    </view>
+    <view class="tool-btn" bindtap="toggleVoice">
+      <text class="tool-icon">🔊</text>
+      <text class="tool-text">{{voiceEnabled ? '已开' : '已关'}}</text>
+    </view>
+    <view class="tool-btn" bindtap="moreAction">
+      <text class="tool-icon">⋯</text>
+      <text class="tool-text">更多</text>
+    </view>
+  </view>
+
+  <view class="room-head card">
+    <text class="room-title">{{roomMode === 'MAHJONG' ? '麻将计分桌' : (roomMode === 'BILLIARDS8' ? '中式八球计分桌' : '中式九球计分桌')}}</text>
+    <text class="room-meta">房间号 {{room.roomCode}} · {{room.status === 'SETTLED' ? '已结束' : '进行中'}}</text>
+  </view>
+
+  <view wx:if="{{roomMode === 'BILLIARDS9'}}" class="card rule-card">
+    <view class="rule-title">九球分值设置（默认 1 / 4 / 7 / 10，可修改后保存）</view>
+    <view class="rule-grid">
+      <view class="rule-item">
+        <text>犯规</text>
+        <input class="rule-input" type="number" value="{{nineRule.foul}}" data-key="foul" bindinput="onRuleInput" />
+      </view>
+      <view class="rule-item">
+        <text>普胜</text>
+        <input class="rule-input" type="number" value="{{nineRule.normal}}" data-key="normal" bindinput="onRuleInput" />
+      </view>
+      <view class="rule-item">
+        <text>小金</text>
+        <input class="rule-input" type="number" value="{{nineRule.smallGold}}" data-key="smallGold" bindinput="onRuleInput" />
+      </view>
+      <view class="rule-item">
+        <text>大金</text>
+        <input class="rule-input" type="number" value="{{nineRule.bigGold}}" data-key="bigGold" bindinput="onRuleInput" />
+      </view>
+    </view>
+    <button class="save-rule-btn" bindtap="saveNineRule">保存九球分值</button>
+  </view>
+
+  <block wx:for="{{room.players}}" wx:key="userId">
+    <view class="card player-card">
+      <view class="player-left">
+        <image class="avatar" src="{{item.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+        <view class="player-info">
+          <view class="name-row">
+            <text class="player-name">{{item.displayName}}</text>
+            <text wx:if="{{item.owner}}" class="owner-tag">房主</text>
+          </view>
+          <text class="player-result {{item.displayScore < 0 ? 'neg' : (item.displayScore > 0 ? 'pos' : '')}}">{{item.resultText}}</text>
+
+          <view wx:if="{{roomMode === 'BILLIARDS9'}}" class="nine-actions">
+            <text class="nine-btn" data-uid="{{item.userId}}" data-action="foul" bindtap="applyNineAction">犯规</text>
+            <text class="nine-btn" data-uid="{{item.userId}}" data-action="normal" bindtap="applyNineAction">普胜</text>
+            <text class="nine-btn" data-uid="{{item.userId}}" data-action="smallGold" bindtap="applyNineAction">小金</text>
+            <text class="nine-btn" data-uid="{{item.userId}}" data-action="bigGold" bindtap="applyNineAction">大金</text>
+          </view>
+        </view>
+      </view>
+
+      <button wx:if="{{roomMode !== 'BILLIARDS9'}}" class="give-btn" data-uid="{{item.userId}}" bindtap="giveScore">给分</button>
+    </view>
+  </block>
+
+  <view class="card settle-card">
+    <button class="settle-btn" bindtap="settleRoom">房主结算</button>
+  </view>
+
+  <view id="recordCard" class="card record-card">
+    <text class="record-title">最近记录</text>
+    <block wx:for="{{records}}" wx:key="id">
+      <view class="record-row">
+        <view class="record-main">
+          <view class="record-user">
+            <image class="record-avatar" src="{{item.operatorAvatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+            <text class="record-name">{{item.operatorName}}</text>
+          </view>
+          <text class="record-arrow">→</text>
+          <view class="record-user">
+            <image class="record-avatar" src="{{item.targetAvatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+            <text class="record-name">{{item.targetName}}</text>
+          </view>
+          <text class="record-score">+{{item.scoreDelta}}</text>
+        </view>
+        <text class="muted">{{item.createdAt}}</text>
+      </view>
+    </block>
+    <view wx:if="{{records.length === 0}}" class="muted">暂无记录</view>
+  </view>
+
+  <view wx:if="{{qrcodeVisible}}" class="qrcode-mask" bindtap="closeJoinQr">
+    <view class="qrcode-panel card" catchtap="noop">
+      <text class="qrcode-title">扫码进入房间</text>
+      <image class="qrcode-image" src="{{qrcodeTempFilePath}}" mode="aspectFit" bindtap="previewJoinQr" />
+      <text class="qrcode-tip">未登录会先进入登录流程，登录成功后自动加入房间</text>
+      <view class="qrcode-actions">
+        <button class="qrcode-btn secondary" bindtap="saveJoinQrToAlbum">保存到相册</button>
+        <button class="qrcode-btn primary" bindtap="closeJoinQr">关闭</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+<view class="container leaderboard-page">
+  <view class="card head-card">
+    <text class="title">好友战绩积分榜</text>
+    <text class="desc">头像与用户名同步展示，按总分降序</text>
+  </view>
+
+  <block wx:for="{{list}}" wx:key="userId">
+    <view class="card row-card {{user && user.id === item.userId ? 'mine' : ''}}">
+      <view class="left">
+        <text class="rank">{{item.rankNo}}</text>
+        <image class="avatar" src="{{item.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+        <text class="name">{{item.nickname}}</text>
+      </view>
+      <view class="right">
+        <text class="score">{{item.totalScore}}分</text>
+        <text class="meta">局数{{item.totalGames}} · 胜{{item.winGames}} · 均分{{item.avgScoreText}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{list.length === 0}}" class="card empty-card">
+    <text class="muted">暂无榜单数据</text>
+  </view>
+</view>

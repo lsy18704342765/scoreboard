@@ -1,0 +1,37 @@
+.create-page {
+  padding-top: 20rpx;
+}
+
+.panel {
+  padding: 16rpx;
+}
+
+.line {
+  margin-top: 10rpx;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #777;
+}
+
+.value {
+  font-size: 32rpx;
+  color: #333;
+  margin-left: 10rpx;
+}
+
+.picker-box {
+  margin-top: 8rpx;
+  height: 72rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 12rpx;
+  background: #fafafa;
+}
+
+.submit {
+  margin-top: 20rpx;
+}

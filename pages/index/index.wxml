@@ -1,0 +1,103 @@
+<view class="container index-page">
+  <view class="module-title">开桌</view>
+
+  <view class="desk-grid">
+    <block wx:for="{{cards}}" wx:key="key">
+      <view class="desk-card card" data-key="{{item.key}}" bindtap="onCardTap">
+        <text class="desk-icon">{{item.icon}}</text>
+        <text class="desk-title">{{item.title}}</text>
+        <text class="desk-desc">{{item.desc}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="voice-row card" bindtap="onVoiceToggle">
+    <view class="voice-left">
+      <text class="voice-icon">🔈</text>
+      <text class="voice-text">语音播报{{voiceEnabled ? '已开启' : '已关闭'}}</text>
+    </view>
+    <text class="voice-action">{{voiceEnabled ? '关闭播报' : '开启播报'}}</text>
+  </view>
+
+  <view class="join-row card">
+    <input class="join-input" placeholder="输入房间号加入" value="{{roomCodeInput}}" bindinput="onRoomInput" />
+    <button class="scan-btn" bindtap="scanJoinRoom">扫码</button>
+    <button class="join-btn" bindtap="joinRoom">加入</button>
+  </view>
+
+  <view class="recent-title-row">
+    <text class="module-title">最近对局</text>
+    <text class="rank-link" bindtap="toRecords">查看战绩榜</text>
+  </view>
+
+  <view class="recent-list">
+    <view class="recent-item card" bindtap="openRecent" data-mode="MAHJONG">
+      <view class="recent-main">
+        <text class="recent-name">麻将计分桌</text>
+        <view class="recent-right">
+          <text class="recent-status">{{recentMahjong ? (recentMahjong.status === 'SETTLED' ? '已结束' : '进行中') : '暂无记录'}}</text>
+          <text class="detail-toggle" catchtap="toggleRecentDetail" data-mode="MAHJONG">{{expandedRecentMode === 'MAHJONG' ? '收起' : '展开'}}</text>
+        </view>
+      </view>
+      <text class="recent-code">{{recentMahjong ? ('房间号 ' + recentMahjong.roomCode) : '点击后可尝试进入最近局'}}</text>
+      <view wx:if="{{expandedRecentMode === 'MAHJONG' && recentMahjong && recentMahjong.players && recentMahjong.players.length > 0}}" class="recent-player-list">
+        <block wx:for="{{recentMahjong.players}}" wx:for-item="player" wx:key="userId">
+          <view class="recent-player-row">
+            <view class="recent-player-left">
+              <image class="recent-player-avatar" src="{{player.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+              <text class="recent-player-name">{{player.displayName}}</text>
+            </view>
+            <text class="recent-player-score {{player.currentScore > 0 ? 'score-pos' : (player.currentScore < 0 ? 'score-neg' : '')}}">{{player.currentScore}}</text>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{expandedRecentMode === 'MAHJONG' && (!recentMahjong || !recentMahjong.players || recentMahjong.players.length === 0)}}" class="recent-empty muted">暂无玩家数据</view>
+    </view>
+
+    <view class="recent-item card" bindtap="openRecent" data-mode="BILLIARDS8">
+      <view class="recent-main">
+        <text class="recent-name">中式八球</text>
+        <view class="recent-right">
+          <text class="recent-status">{{recentBilliards8 ? (recentBilliards8.status === 'SETTLED' ? '已结束' : '进行中') : '暂无记录'}}</text>
+          <text class="detail-toggle" catchtap="toggleRecentDetail" data-mode="BILLIARDS8">{{expandedRecentMode === 'BILLIARDS8' ? '收起' : '展开'}}</text>
+        </view>
+      </view>
+      <text class="recent-code">{{recentBilliards8 ? ('房间号 ' + recentBilliards8.roomCode) : '点击后可尝试进入最近局'}}</text>
+      <view wx:if="{{expandedRecentMode === 'BILLIARDS8' && recentBilliards8 && recentBilliards8.players && recentBilliards8.players.length > 0}}" class="recent-player-list">
+        <block wx:for="{{recentBilliards8.players}}" wx:for-item="player" wx:key="userId">
+          <view class="recent-player-row">
+            <view class="recent-player-left">
+              <image class="recent-player-avatar" src="{{player.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+              <text class="recent-player-name">{{player.displayName}}</text>
+            </view>
+            <text class="recent-player-score {{player.currentScore > 0 ? 'score-pos' : (player.currentScore < 0 ? 'score-neg' : '')}}">{{player.currentScore}}</text>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{expandedRecentMode === 'BILLIARDS8' && (!recentBilliards8 || !recentBilliards8.players || recentBilliards8.players.length === 0)}}" class="recent-empty muted">暂无玩家数据</view>
+    </view>
+
+    <view class="recent-item card" bindtap="openRecent" data-mode="BILLIARDS9">
+      <view class="recent-main">
+        <text class="recent-name">中式九球</text>
+        <view class="recent-right">
+          <text class="recent-status">{{recentBilliards9 ? (recentBilliards9.status === 'SETTLED' ? '已结束' : '进行中') : '暂无记录'}}</text>
+          <text class="detail-toggle" catchtap="toggleRecentDetail" data-mode="BILLIARDS9">{{expandedRecentMode === 'BILLIARDS9' ? '收起' : '展开'}}</text>
+        </view>
+      </view>
+      <text class="recent-code">{{recentBilliards9 ? ('房间号 ' + recentBilliards9.roomCode) : '点击后可尝试进入最近局'}}</text>
+      <view wx:if="{{expandedRecentMode === 'BILLIARDS9' && recentBilliards9 && recentBilliards9.players && recentBilliards9.players.length > 0}}" class="recent-player-list">
+        <block wx:for="{{recentBilliards9.players}}" wx:for-item="player" wx:key="userId">
+          <view class="recent-player-row">
+            <view class="recent-player-left">
+              <image class="recent-player-avatar" src="{{player.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+              <text class="recent-player-name">{{player.displayName}}</text>
+            </view>
+            <text class="recent-player-score {{player.currentScore > 0 ? 'score-pos' : (player.currentScore < 0 ? 'score-neg' : '')}}">{{player.currentScore}}</text>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{expandedRecentMode === 'BILLIARDS9' && (!recentBilliards9 || !recentBilliards9.players || recentBilliards9.players.length === 0)}}" class="recent-empty muted">暂无玩家数据</view>
+    </view>
+  </view>
+</view>

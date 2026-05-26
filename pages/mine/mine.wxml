@@ -1,0 +1,41 @@
+<view class="container mine-page font-{{fontSizeMode}}">
+  <view class="profile card">
+    <block wx:if="{{user}}">
+      <image class="avatar" src="{{user.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill"></image>
+      <view class="profile-text">
+        <text class="name">{{user.nickname}}</text>
+        <text class="id-text">ID: {{user.id}}</text>
+      </view>
+      <view class="profile-actions">
+        <button class="edit-btn" bindtap="editProfile">修改名称</button>
+        <button class="edit-btn edit-avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">修改头像</button>
+      </view>
+    </block>
+
+    <block wx:else>
+      <view class="login-box">
+        <button class="primary-btn login-btn" bindtap="loginWechat">微信登录</button>
+        <input class="login-input" placeholder="或输入自定义昵称" bindinput="onCustomInput" />
+        <button class="light-btn login-btn" bindtap="loginCustom">自定义登录</button>
+      </view>
+    </block>
+  </view>
+
+  <view class="menu-group card">
+    <block wx:for="{{menuItems}}" wx:key="key">
+      <button wx:if="{{item.key === 'share'}}" class="menu-item menu-share-btn" open-type="share">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-text">{{item.text}}</text>
+      </button>
+      <view wx:else class="menu-item" data-key="{{item.key}}" bindtap="tapMenu">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-text">{{item.text}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="font-row card" bindtap="openFontSetting">
+    <text class="font-icon">𝐅𝐀</text>
+    <text class="font-text">字体大小设置（当前：{{fontSizeLabel}}）</text>
+  </view>
+</view>

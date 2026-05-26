@@ -1,0 +1,68 @@
+page {
+  background: #efefef;
+  color: #333;
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 微信小程序 Button 在 iOS 与 Android 上的跨平台重置 */
+button {
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button::after {
+  border: none;
+}
+
+.container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 16rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin: 10rpx 0;
+}
+
+.primary-btn {
+  background: #58b86f;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.light-btn {
+  background: #f8f8f8;
+  border: 1rpx solid #e4e4e4;
+  color: #555;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+}
+
+.badge-green {
+  display: inline-block;
+  background: #58b86f;
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  padding: 2rpx 14rpx;
+}
+
+.muted {
+  color: #8e8e8e;
+}

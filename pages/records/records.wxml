@@ -1,0 +1,65 @@
+<view class="container records-page">
+  <view class="tabs card">
+    <block wx:for="{{tabList}}" wx:key="*this">
+      <view class="tab-item {{tabIndex === index ? 'active' : ''}}" data-index="{{index}}" bindtap="switchTab">{{item}}</view>
+    </block>
+  </view>
+
+  <view class="summary card">
+    <view class="summary-top">
+      <text>当前筛选：{{tabList[tabIndex]}}（{{summary.totalGames}}局）</text>
+      <text class="link-green" bindtap="showLeaderboard">查看战绩榜</text>
+    </view>
+    <view class="summary-line">
+      <text>赢局 {{summary.winGames}} 场</text>
+      <text>总分 {{summary.totalScore}} 分</text>
+    </view>
+    <view class="summary-line">
+      <text>输局 {{summary.loseGames}} 场</text>
+      <text>平均 {{summary.avgScoreText}} 分</text>
+    </view>
+    <view class="summary-line">
+      <text>平局 {{summary.drawGames}} 场</text>
+      <text>已结算 {{summary.settledGames}} 场</text>
+    </view>
+  </view>
+
+  <block wx:for="{{filteredRoomList}}" wx:for-item="room" wx:key="roomCode">
+    <view class="room-card card">
+      <view class="room-head">
+        <view>
+          <text class="room-type">{{room.roomTypeText}}</text>
+          <text class="status {{room.status === 'SETTLED' ? 'status-end' : 'status-run'}}">{{room.status === 'SETTLED' ? '已结束' : '进行中'}}</text>
+        </view>
+        <view class="ops">
+          <text class="op-btn" bindtap="openRoom" data-code="{{room.roomCode}}" data-mode="{{room.roomMode}}">📈</text>
+          <text class="op-btn" bindtap="copyRoomCode" data-code="{{room.roomCode}}">🔖</text>
+        </view>
+      </view>
+
+      <view class="self-score-row">
+        <text>我的本局分数</text>
+        <text class="self-score {{room.selfScore < 0 ? 'self-neg' : (room.selfScore > 0 ? 'self-pos' : '')}}">{{room.selfScore}}</text>
+      </view>
+
+      <view class="players-row">
+        <block wx:for="{{room.players}}" wx:for-item="player" wx:key="userId">
+          <view class="player-mini">
+            <image class="avatar" src="{{player.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill" />
+            <text class="name">{{player.displayName}}</text>
+            <text class="score {{player.currentScore < 0 ? 'neg' : ''}}">{{player.currentScore}}</text>
+          </view>
+        </block>
+      </view>
+
+      <view class="room-foot">
+        <text>{{room.createdAt || ''}}</text>
+        <text>房间号 {{room.roomCode}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{filteredRoomList.length === 0}}" class="card empty-card">
+    <text class="muted">当前分类暂无对局记录</text>
+  </view>
+</view>

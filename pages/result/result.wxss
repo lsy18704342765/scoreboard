@@ -1,0 +1,63 @@
+.result-page {
+  padding-top: 12rpx;
+}
+
+.panel {
+  padding: 16rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  color: #444;
+  font-weight: 600;
+}
+
+.row {
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 8rpx;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 62rpx;
+  height: 62rpx;
+  border-radius: 8rpx;
+  background: #efefef;
+}
+
+.name {
+  margin-left: 10rpx;
+  font-size: 26rpx;
+}
+
+.score {
+  font-size: 34rpx;
+  color: #333;
+}
+
+.score.neg {
+  color: #b85d5d;
+}
+
+.summary {
+  margin-top: 12rpx;
+  background: #f7f7f7;
+  border-radius: 8rpx;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  color: #666;
+}
+
+.btn {
+  margin-top: 10rpx;
+}

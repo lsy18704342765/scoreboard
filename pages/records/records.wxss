@@ -1,0 +1,168 @@
+.records-page {
+  padding-bottom: 18rpx;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8rpx;
+  padding: 10rpx;
+}
+
+.tab-item {
+  padding: 8rpx 16rpx;
+  border: 1rpx solid #d8d8d8;
+  border-radius: 8rpx;
+  font-size: 23rpx;
+  color: #666;
+}
+
+.tab-item.active {
+  background: #58b86f;
+  color: #fff;
+  border-color: #58b86f;
+}
+
+.summary {
+  margin-top: 10rpx;
+  padding: 14rpx;
+}
+
+.summary-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.link-green {
+  color: #58b86f;
+}
+
+.summary-line {
+  margin-top: 8rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #4a4a4a;
+}
+
+.room-card {
+  margin-top: 12rpx;
+  padding: 10rpx;
+}
+
+.room-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-type {
+  font-size: 30rpx;
+  color: #656565;
+}
+
+.status {
+  margin-left: 12rpx;
+  font-size: 28rpx;
+}
+
+.status-run {
+  color: #58b86f;
+}
+
+.status-end {
+  color: #999;
+}
+
+.ops {
+  display: flex;
+  gap: 6rpx;
+}
+
+.op-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50rpx;
+  height: 50rpx;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+.self-score-row {
+  margin-top: 6rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #6f6f6f;
+}
+
+.self-score {
+  font-size: 30rpx;
+  color: #505050;
+}
+
+.self-score.self-pos {
+  color: #c56a52;
+}
+
+.self-score.self-neg {
+  color: #5f6d79;
+}
+
+.players-row {
+  display: flex;
+  gap: 8rpx;
+  margin-top: 8rpx;
+  overflow-x: auto;
+}
+
+.player-mini {
+  width: 105rpx;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 8rpx;
+  background: #efefef;
+}
+
+.name {
+  display: block;
+  font-size: 22rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  display: block;
+  font-size: 34rpx;
+  color: #333;
+}
+
+.score.neg {
+  color: #b4635a;
+}
+
+.room-foot {
+  margin-top: 6rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #8e8e8e;
+}
+
+.empty-card {
+  margin-top: 10rpx;
+  padding: 20rpx;
+}

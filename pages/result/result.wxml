@@ -1,0 +1,24 @@
+<view class="container result-page">
+  <view class="card panel">
+    <text class="title">房间 {{roomCode}} 结算结果</text>
+
+    <block wx:for="{{players}}" wx:key="userId">
+      <view class="row">
+        <view class="left">
+          <image class="avatar" src="{{item.avatarUrl || '/assets/avatar-default.png'}}" mode="aspectFill"></image>
+          <text class="name">{{item.displayName}}</text>
+        </view>
+        <text class="score {{item.currentScore < 0 ? 'neg' : ''}}">{{item.currentScore}}</text>
+      </view>
+    </block>
+
+    <view class="summary">
+      <text>最高分 {{maxScore}}</text>
+      <text>最低分 {{minScore}}</text>
+      <text>平均分 {{avgScore}}</text>
+    </view>
+
+    <button class="primary-btn btn" bindtap="backHome">返回首页</button>
+    <button class="light-btn btn" bindtap="toRecords">查看记录</button>
+  </view>
+</view>
